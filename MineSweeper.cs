@@ -34,6 +34,8 @@ namespace MineSweeper
             while (!(quit || board.PlayerWon || board.GameOver))
             {
                 // Skriv klart spelloopen här
+                Console.WriteLine("Skriv färdigt spelet!");
+                break;
             }
         }
     }
