@@ -18,23 +18,28 @@ namespace MineSweeper
             sweepedCount = 0;
         }
 
-        // Egenskap som säger som spelaren har vunnit spelet.
+        // Enbart läsbar egenskap som säger som spelaren har vunnit spelet.
         public bool PlayerWon => false; // Stubbe
 
-        // Egenskap som säger om spelaren har förlorat.
+        // Enbart läsbar egenskap som säger om spelaren har förlorat.
         public bool GameOver => false; // Stubbe
 
 
-        // Försök röja en ruta. Returnerar false om ogiltigt drag. 
-        public bool Sweeped(int row, int col) // Stubbe
+        // Försök röja en ruta. Returnerar false om ogiltigt drag, annars true.
+        public bool TrySweep(int row, int col) // Stubbe
         {
             return true;
         }
 
-        // Försök flagga en ruta. Returnerar false om ogiltigt drag. 
-        public bool Flag(int row, int col) // Stubbe
+        // Försök flagga en ruta. Returnerar false om ogiltigt drag, annars true.
+        public bool TryFlag(int row, int col) // Stubbe
         {
             return true;
+        }
+
+        // Skriv ut spelplanen till konsolen.
+        public void Print() // Stubbe
+        {
         }
     }
 }

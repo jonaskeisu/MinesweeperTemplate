@@ -7,11 +7,27 @@ namespace MineSweeper
     // Typ för en ruta på spelplanen.
     struct Square
     {
+        enum GameSymbol
+        { 
+            Flagged = 'F',
+            NotSweeped = 'X',
+            SweepedZeroCloseMine = '.'
+        }
+
+        enum GameOverSymbol
+        {
+            ExplodedMine = 'M',
+            FlaggedMine = 'ɯ',
+            Mine = 'm',
+            MisplacedFlag = 'Ⅎ'
+        }
+
+
         private int closeMineCount; // Antal minor på intilliggande rutor
         private bool flagged, boobyTrapped, sweeped;
         private char symbol;
 
-        // Konstruktor som initiera en ny ruta på spelplanen.
+        // Konstruktor som initierar en ny ruta på spelplanen.
         public Square(bool isBoobyTrapped)
         {
             closeMineCount = 0;
@@ -21,44 +37,41 @@ namespace MineSweeper
             symbol = 'X';
         }
 
-        // Egenskap som säger om rutan är flaggad för tillfället.
+        // Enbart läsbar egenskap som säger om rutan är flaggad för tillfället.
         public bool IsFlagged => false; // Stubbe
 
-        // Egenskap som säger om rutan är minerad.
+        // Enbart läsbar egenskap som säger om rutan är minerad.
         public bool BoobyTrapped => false; // Stubbe
 
-        // Egenskap som säger om rutan har blivit röjd. 
+        // Enbart läsbar egenskap som säger om rutan har blivit röjd. 
         public bool IsSweeped => false; // Stubbe
 
-        // Egenskap som är symbolen som representerar rutan just nu om spelplanen skall ritas ut.
-        public char Symbol => 'X'; // Stubbe
+        // Enbart läsbar egenskap som är symbolen som representerar rutan just nu 
+        // om spelplanen skall ritas ut.
+        public char Symbol => (char)GameSymbol.NotSweeped; // Stubbe
         
-        // Egenskap som tilldelas true för alla rutor om spelaren röjer en minerad ruta 
-        public bool GameOver 
+        // Enbart skrivbar egenskap som tilldelas true för alla rutor om spelaren 
+        // röjer en minerad ruta 
+        public bool GameOver
         { 
             set { } // Stubbe
         }
 
-        // Öka antalet minor på intilliggande rutor med 1 under initalisering av spelplan.
+        // Öka räknaren av minor på intilliggande rutor med 1.
         public void IncrementCloseMineCount() // Stubbe
         {  
         }
 
-        // Försök att flagga rutan. Returnerar false om ogiltigt drag
-        public bool Flag() // Stubbe
+        // Försök att flagga rutan. Returnerar false om ogiltigt drag, annars true.
+        public bool TryFlag() // Stubbe
         {
             return true;
         }
 
-        // Försök röja rutan. Returnerar false om ogiltigt drag 
-        public bool Sweep() // Stubbe
+        // Försök röja rutan. Returnerar false om ogiltigt drag, annars true.
+        public bool TrySweep() // Stubbe
         {
             return true;
-        }
-
-        // Skriv ut spelplanen till konsolen.
-        public void Print() // Stubbe
-        {
         }
     }
 }

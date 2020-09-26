@@ -10,7 +10,7 @@ namespace MineSweeper
         private Board board;
         private bool quit;
 
-        // Konstruktor för ett nytt spel med slumpmässig spelplan.
+        // Konstruktor som initierare ett nytt spel med en slumpmässig spelplan.
         public MineSweeper(string[] args)
         {
             board = new Board(args);
