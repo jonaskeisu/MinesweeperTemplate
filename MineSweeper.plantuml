@@ -1,0 +1,69 @@
+@startuml
+
+enum GameSymbol
+{
+    Flagged = 'F'
+    NotSweeped = 'X''
+    SweepedZeroCloseMine = '.'
+}
+
+enum GameOverSymbol
+{
+    ExplodedMine = 'M'
+    FlaggedMine = 'ɯ'
+    Mine = 'm'
+    MisplacedFlag = 'Ⅎ'
+}
+
+class Square
+{
+    - int closeMineCount
+    + bool IsFlagged
+    + bool BoobyTrapped
+    + bool IsSweeped
+    + char Symbol
+    + bool GameOver
+    Square(bool)
+    void IncrementCloseMineCount()
+    bool TrySweep()
+    bool TryFlag()
+}
+
+Square --> "0..1" GameSymbol
+Square --> "0..1" GameOverSymbol
+
+
+class Board 
+{
+    - int flagCount
+    - int sweepedCount
+    - Square[,] board
+    + bool PlayerWon
+    + bool GameOver
+    + Board(string[])
+    + bool TrySweep(int, int)
+    + bool TryFlag(int, int)
+    + void Print()
+}
+
+Board --* "100" Square
+Board ..> Helper
+
+class MineSweeper
+{
+    - Board board
+    - bool quit
+    {static} - string ReadCommand()
+    + MineSweeper(string[])
+    + void Run()
+}
+
+MineSweeper "1" --* "1" Board
+
+class Helper
+{
+    {static} void Initialize(string[])
+    {static} bool IsBoobyTrapped(int, int)
+} 
+
+@enduml

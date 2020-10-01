@@ -13,7 +13,26 @@ namespace MineSweeper
         // Konstruktor som initaliserar en ny spelplan.
         public Board(string[] args) // Stubbe
         {
-            board = null;
+            Helper.Initialize(args);
+            board = new Square[10, 10];
+            for (int row = 0; row < 10; ++row)
+            {
+                for (int col = 0; col < 10; ++col)
+                {
+                    bool isBoobyTrapped = Helper.BoobyTrapped(row, col);
+                    board[row, col] = new Square(isBoobyTrapped);
+                }
+            }
+
+            for (int row = 0; row < 10; ++row)
+            {
+                for (int col = 0; col < 10; ++col)
+                {
+                    // för board[row, col] anropa IncrementCloseMineCount() 
+                    // KORREKT antal gångar. 
+                }
+            }
+
             flagCount = 0;
             sweepedCount = 0;
         }
@@ -40,6 +59,14 @@ namespace MineSweeper
         // Skriv ut spelplanen till konsolen.
         public void Print() // Stubbe
         {
+            for (int row = 0; row < 10; ++row)
+            {
+                for (int col = 0; col < 10; ++col)
+                {
+                    Console.Write(board[row, col].Symbol + " ");
+                }
+                Console.WriteLine();
+            }
         }
     }
 }
